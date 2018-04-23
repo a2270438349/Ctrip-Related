@@ -9,5 +9,11 @@ import com.chatRobot.model.Course;
  * @date: 2018/4/23 <br/>
  */
 public interface ICourseDao {
-  Course selectCourse(long id);
+  Course selectCourse(int id);
+
+  boolean addCourse(Course course);
+
+  boolean deleteCourse(int id);
+
+  boolean updateCourse(Course course);
 }

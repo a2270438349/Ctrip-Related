@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 设置为IUserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.chatRobot.dao.ICourseDao">
 
-    <select id="selectCourse" resultType="Course" parameterType="long">
+    <select id="selectCourse" resultType="Course" parameterType="int">
         SELECT * FROM course WHERE id = #{id}
     </select>
+
+    <insert id="addCourse" parameterType="com.chatRobot.model.Course">
+        insert into course(id ,name,credit) values(#{id},#{name},#{credit})
+    </insert>
+
+    <delete id="deleteCourse" parameterType="int">
+        delete from course WHERE id = #{id}
+    </delete>
+
+    <update id="updateCourse" parameterType="com.chatRobot.model.Course">
+        UPDATE course set name = #{name},credit= #{credit} WHERE id = #{id}
+    </update>
 
 </mapper>

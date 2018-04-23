@@ -10,6 +10,12 @@ import com.chatRobot.model.Course;
  */
 public interface ICourseService {
 
-  Course selectCourse(long courseId);
+  Course selectCourse(int courseId);
+
+  boolean addCourse(Course course);
+
+  boolean deleteCourse(int courseId);
+
+  boolean updateCourse(Course course);
 
 }

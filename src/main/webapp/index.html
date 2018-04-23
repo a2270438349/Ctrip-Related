@@ -15,7 +15,7 @@
         xmlhttp.open("POST", "user/showUser.do", true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id="+document.getElementById("searchId").value);
-    };
+    }
     function selectCourse() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -26,14 +26,72 @@
         xmlhttp.open("POST", "course/showCourse.do", true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("id="+document.getElementById("searchId").value);
+    };
+    function addCourse() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("test").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "course/addCourse.do", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("id="+document.getElementById("addCourseId").value);
+        xmlhttp.send("name="+document.getElementById("addCourseName").value);
+        xmlhttp.send("credit="+document.getElementById("addCourseCredit").value);
+    };
+    function deleteCourse() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("test").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "course/deleteCourse.do", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("id="+document.getElementById("deleteCourseId").value);
+    };
+    function updateCourse () {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("test").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "course/updateCourse.do", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("id="+document.getElementById("updateCourseId").value);
+        xmlhttp.send("name="+document.getElementById("updateCourseName").value);
+        xmlhttp.send("credit="+document.getElementById("updateCourseCredit").value);
     }
+
 </script>
 <body>
 <div align="center">
-    <p id="test">请输入查询内容</p>
-    请输入要查询的id:<input type="text" id="searchId" ></br>
-    <button type="button" id="userButton" onclick="selectUser()">show userInfo</button>
-    <button type="button" id="courseButton" onclick="selectCourse()">show courseInfo</button>
+    <p id="test">#{执行结果}</p>
+    请输入要查询的id:<input type="text" id="searchId" >
+    <button type="button" id="userButton" onclick="selectUser()">查询用户</button>
+    <button type="button" id="courseButton" onclick="selectCourse()">查询课程</button>
+    <br><br><br>
+
+    <p >添加课程</p><br>
+    课程id：<input type="text" id="addCourseId">
+    课程名：<input type="text" id="addCourseName">
+    课程学分：<input type="text" id="addCourseCredit">
+    <button type="button" id="addCourseButton" onclick="addCourse()">添加课程</button>
+    <br><br><br>
+
+    <p>删除课程</p><br>
+    想要删除的课程id为：<input type="text" id = "deleteCourseId">
+    <button tyoe="button" id ="deleteCourseButton" onclick="deleteCourse()">删除课程</button>
+    <br><br><br>
+
+    <p >修改课程</p><br>
+    课程id：<input type="text" id="updateCourseId">
+    课程名：<input type="text" id="updateCourseName">
+    课程学分：<input type="text" id="updateCourseCredit">
+    <button type="button" id="updateCourseButton" onclick="updateCourse()">修改课程</button>
+    <br><br><br>
 </div>
 
 </body>

@@ -8,15 +8,25 @@ package com.chatRobot.model;
  */
 public class Course {
 
-  private long id;
+  private int id;
   private String name;
   private int credit;
 
-  public long getId() {
+  public Course(){
+
+  }
+
+  public Course(int id,String name,int credit){
+    this.id=id;
+    this.name=name;
+    this.credit=credit;
+  }
+
+  public int getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(int id) {
     this.id = id;
   }
 

@@ -23,7 +23,7 @@ public class ICourseDaoTest {
   private ICourseDao dao;
   @Test
   public void selectCourse() throws Exception {
-    long id = 1;
+    int id = 1;
     Course course = dao.selectCourse(id);
     System.out.println(course.getCredit());
   }

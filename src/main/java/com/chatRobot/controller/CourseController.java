@@ -26,11 +26,11 @@ public class CourseController {
   private ICourseService courseService;
 
   @RequestMapping("/showCourse.do")
-  public void selectUser(HttpServletRequest request, HttpServletResponse response) throws
+  public void selectCourse(HttpServletRequest request, HttpServletResponse response) throws
       IOException {
     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
-    long courseId = Long.parseLong(request.getParameter("id"));
+    int courseId = Integer.parseInt(request.getParameter("id"));
     Course course = this.courseService.selectCourse(courseId);
     // ObjectMapper mapper = new ObjectMapper();
     // response.getWriter().write(mapper.writeValueAsString(user));
@@ -50,4 +50,68 @@ public class CourseController {
     }
     response.getWriter().close();
   }
+
+  @RequestMapping("/addCourse.do")
+  public void addCourse(HttpServletRequest request, HttpServletResponse response) throws
+      IOException {
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+    int courseId = Integer.parseInt(request.getParameter("id"));
+    String courseName =request.getParameter("name");
+    int courseCredit=Integer.parseInt(request.getParameter("credit"));
+    Course course=new Course(courseId,courseName,courseCredit);
+    boolean result = this.courseService.addCourse(course);
+
+    // ObjectMapper mapper = new ObjectMapper();
+    // response.getWriter().write(mapper.writeValueAsString(user));
+    if(result==false){
+      response.getWriter().write("<p>添加失败</p>");
+    }
+    else {
+      response.getWriter().write("<p>添加成功</p>");
+    }
+    response.getWriter().close();
+  }
+
+  @RequestMapping("/deleteCourse.do")
+  public void deleteCourse(HttpServletRequest request, HttpServletResponse response) throws
+      IOException {
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+    int courseId = Integer.parseInt(request.getParameter("id"));
+    boolean result = this.courseService.deleteCourse(courseId);
+
+    // ObjectMapper mapper = new ObjectMapper();
+    // response.getWriter().write(mapper.writeValueAsString(user));
+    if(result==false){
+      response.getWriter().write("<p>删除失败</p>");
+    }
+    else {
+      response.getWriter().write("<p>删除成功</p>");
+    }
+    response.getWriter().close();
+  }
+
+  @RequestMapping("/updateCourse.do")
+  public void updateCourse(HttpServletRequest request, HttpServletResponse response) throws
+      IOException {
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+    int courseId = Integer.parseInt(request.getParameter("id"));
+    String courseName =request.getParameter("name");
+    int courseCredit=Integer.parseInt(request.getParameter("credit"));
+    Course course=new Course(courseId,courseName,courseCredit);
+    boolean result = this.courseService.updateCourse(course);
+
+    // ObjectMapper mapper = new ObjectMapper();
+    // response.getWriter().write(mapper.writeValueAsString(user));
+    if(result==false){
+      response.getWriter().write("<p>修改失败</p>");
+    }
+    else {
+      response.getWriter().write("<p>修改成功</p>");
+    }
+    response.getWriter().close();
+  }
+
 }
