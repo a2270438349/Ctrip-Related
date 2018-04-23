@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<script>
+    function selectUser() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("test").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "user/showUser.do", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("id="+document.getElementById("searchId").value);
+    };
+    function selectCourse() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("test").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", "course/showCourse.do", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("id="+document.getElementById("searchId").value);
+    }
+</script>
+<body>
+<div align="center">
+    <p id="test">请输入查询内容</p>
+    请输入要查询的id:<input type="text" id="searchId" ></br>
+    <button type="button" id="userButton" onclick="selectUser()">show userInfo</button>
+    <button type="button" id="courseButton" onclick="selectCourse()">show courseInfo</button>
+</div>
+
+</body>
+</html>
