@@ -54,17 +54,22 @@ public class CourseController {
   @RequestMapping("/addCourse.do")
   public void addCourse(HttpServletRequest request, HttpServletResponse response) throws
       IOException {
+    response.getWriter().write("开始执行函数");
     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
     int courseId = Integer.parseInt(request.getParameter("id"));
     String courseName =request.getParameter("name");
     int courseCredit=Integer.parseInt(request.getParameter("credit"));
-    Course course=new Course(courseId,courseName,courseCredit);
-    boolean result = this.courseService.addCourse(course);
+    Course course=new Course();
+    course.setId(courseId);
+    course.setName(courseName);
+    course.setCredit(courseCredit);
+    response.getWriter().write("<h1>开始创建类</h1>");
+    int result = this.courseService.addCourse(course);
 
     // ObjectMapper mapper = new ObjectMapper();
     // response.getWriter().write(mapper.writeValueAsString(user));
-    if(result==false){
+    if(result==-1||result==0){
       response.getWriter().write("<p>添加失败</p>");
     }
     else {
@@ -100,12 +105,15 @@ public class CourseController {
     int courseId = Integer.parseInt(request.getParameter("id"));
     String courseName =request.getParameter("name");
     int courseCredit=Integer.parseInt(request.getParameter("credit"));
-    Course course=new Course(courseId,courseName,courseCredit);
-    boolean result = this.courseService.updateCourse(course);
+    Course course=new Course();
+    course.setId(courseId);
+    course.setName(courseName);
+    course.setCredit(courseCredit);
+    int result = this.courseService.updateCourse(course);
 
     // ObjectMapper mapper = new ObjectMapper();
     // response.getWriter().write(mapper.writeValueAsString(user));
-    if(result==false){
+    if(result==-1||result==0){
       response.getWriter().write("<p>修改失败</p>");
     }
     else {

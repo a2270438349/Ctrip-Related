@@ -11,9 +11,9 @@ import com.chatRobot.model.Course;
 public interface ICourseDao {
   Course selectCourse(int id);
 
-  boolean addCourse(Course course);
+  int addCourse(Course course);
 
   boolean deleteCourse(int id);
 
-  boolean updateCourse(Course course);
+  int updateCourse(Course course);
 }

@@ -23,7 +23,7 @@ public class CourseServiceImpl implements ICourseService {
     return this.courseDao.selectCourse(courseId);
   }
 
-  public boolean addCourse(Course course) {
+  public int addCourse(Course course) {
     return this.courseDao.addCourse(course);
   }
 
@@ -31,7 +31,7 @@ public class CourseServiceImpl implements ICourseService {
     return this.courseDao.deleteCourse(id);
   }
 
-  public boolean updateCourse(Course course) {
+  public int updateCourse(Course course) {
     return this.courseDao.updateCourse(course);
   }
 
