@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.chatRobot.dao.ICityDao">
+
+    <select id="selectCity" resultType="com.chatRobot.model.CityResponseType" parameterType="String">
+        SELECT p.Name AS provinceName,c.CityId AS cityId , c.Name AS cityName FROM city c,province p
+        WHERE
+         p.Name =
+        #{provinceName}
+         AND
+        p.ProvinceID = c.ProvinceID
+
+    </select>
+
+
+    <insert id="insertCity" parameterType="com.chatRobot.model.CityRequestType">
+        insert into city(CityID,ProvinceID,Name) values (#{cityId},((select provinceID from province
+         where name = #{provinceName})),#{cityName});
+    </insert>
+
+    <delete id="deleteCity" parameterType="com.chatRobot.model.CityRequestType">
+        delete from city WHERE name=#{cityName}
+    </delete>
+
+    <!--由于检验省份是否存在已经在controller层检验过了，所以此处直接根据城市名来update，但可能会因为不是原子操作产生脏数据出错-->
+    <update id="updateCity" parameterType="com.chatRobot.model.CityRequestType">
+        UPDATE city set name = #{newName} WHERE name = #{cityName}
+    </update>
+
+
+
+</mapper>
